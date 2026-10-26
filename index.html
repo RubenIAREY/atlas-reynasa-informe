@@ -225,6 +225,12 @@ html,body{overflow:visible;height:auto;background:#fff}#viewport{position:static
 .db i.nar{background:var(--naranja)}
 .uso .nota{margin-top:8px}
 .urge-g p{font-size:15.5px;line-height:1.42;margin:6px 0 14px}
+.buzon{border:1px solid var(--linea);border-radius:8px;overflow:hidden;box-shadow:0 10px 28px rgba(10,22,40,.12);flex:none}
+.buzon img{display:block;width:100%;height:auto}
+.buzon-notas{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.buzon-notas div{background:var(--blanco);border:1px solid var(--linea);border-left:4px solid var(--azul);border-radius:8px;padding:12px 16px;font-size:15px;line-height:1.4;color:var(--tinta-suave)}
+.buzon-notas div:nth-child(2){border-left-color:var(--rojo)}.buzon-notas div:nth-child(3){border-left-color:var(--naranja)}
+.buzon-notas b{display:block;font-family:var(--f-titulo);font-size:21px;font-weight:700;color:var(--tinta);margin-bottom:2px}
 </style></head><body>
 <div id="viewport"><div id="stage">
 <section class="slide s-cover s-atlas"><img class="mascota" src="media/atlas.jpg" alt="ATLAS, la mascota del agente de IA de Reynasa">
@@ -232,6 +238,12 @@ html,body{overflow:visible;height:auto;background:#fff}#viewport{position:static
 <h1>ATLAS,<br><em>el agente</em><br>de la empresa</h1>
 <p class="sub">Cualquier persona de Reynasa le escribe a su buzón con un encargo y sus archivos, y ATLAS le devuelve el resultado listo. Desde la última actualización es el único agente: Rex se ha desactivado para no tener dos agentes en el mismo equipo, y ATLAS lleva toda la carga.</p>
 <div class="alianza"><span class="pill"><img src="media/logo-reynasa.png" alt="Reynasa"></span><span>Datos del panel de control de ATLAS a 26/10/2026</span></div></div></section>
+<section class="slide"><div class="pad"><div class="eyebrow"><i></i>Así trabaja · su buzón</div>
+<h2>Tiene su propio correo <em>y responde solo</em></h2>
+<div class="buzon"><img src="media/buzon-atlas.png" alt="Bandeja de entrada de ATLAS en Gmail con encargos de Compras y sus respuestas"></div>
+<div class="buzon-notas"><div><b>Le escriben como a un compañero</b>La plantilla le manda el encargo con sus archivos: facturas, albaranes o Excel.</div>
+<div><b>Contesta en el mismo hilo</b>Devuelve el resultado listo. El «yo» de cada hilo es la respuesta de ATLAS.</div>
+<div><b>Una mañana cualquiera</b>En la captura, difuminada por privacidad, seis encargos de Compras del 26/10, de 8:33 a 12:30, todos contestados.</div></div></div></section>
 <section class="slide"><div class="pad"><div class="eyebrow"><i></i>Lo que ha hecho · del 18 de junio al 26 de octubre</div>
 <h2>De las pruebas <em>a toda la empresa</em></h2>
 <div class="kpis"><div><b>742</b><span>encargos de la plantilla</span></div><div><b>42</b><span>personas se lo han pedido</span></div>
