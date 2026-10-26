@@ -1,0 +1,304 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>ATLAS en Reynasa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+/* Escenario 1280x720 sobre fondo negro. Diapositivas claras (papel frío) con el logo arriba a la derecha y la banda azul-rojo-naranja abajo;
+   las oscuras en azul noche con acentos naranja. Títulos en Barlow Condensed, texto en Barlow. */
+:root{--azul:#004A98;--azul-claro:#E6EEF8;--azul-noche:#061E3C;--azul-noche-2:#0C2C54;--rojo:#CE0E2D;--naranja:#FFA400;--negro:#0B0E13;
+--papel:#F3F5F8;--blanco:#FFFFFF;--tinta:#10151C;--tinta-suave:#4C5867;--linea:#D3DBE5;--tenue:#E7ECF2;--claro-osc:#EEF3F9;--suave-osc:#A8B9CF;
+--f-titulo:"Barlow Condensed","Arial Narrow",Arial,sans-serif;--f-texto:"Barlow","Segoe UI",Arial,sans-serif;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#05080C;overflow:hidden;font-family:var(--f-texto);-webkit-font-smoothing:antialiased}
+#viewport{position:fixed;inset:0;display:grid;place-items:center}
+#stage{width:1280px;height:720px;position:absolute;left:50%;top:calc(50% - 23px);transform-origin:center center;box-shadow:0 40px 120px rgba(0,0,0,.6);overflow:hidden;background:var(--papel)}
+.slide{position:absolute;inset:0;background:var(--papel);color:var(--tinta);overflow:hidden;transform:translateX(100%);transition:transform .5s cubic-bezier(.65,0,.35,1);visibility:hidden}
+.slide.prev{transform:translateX(-100%)}
+.slide.active{transform:translateX(0);visibility:visible}
+.slide.anim{visibility:visible}
+.slide.dark{background:var(--azul-noche);color:var(--claro-osc)}
+.slide:before{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;z-index:4;background:linear-gradient(90deg,var(--azul) 0 72%,var(--rojo) 72% 86%,var(--naranja) 86% 100%)}
+.slide:not(.s-cover):after{content:"";position:absolute;top:30px;right:52px;width:150px;height:40px;z-index:4;background:url(media/logo-reynasa.png) right center/contain no-repeat}
+.slide.dark:not(.s-cover):after{top:24px;right:46px;width:164px;height:50px;background-color:var(--blanco);background-position:center;background-size:132px auto;border-radius:8px}
+.pad{position:relative;height:100%;padding:44px 64px 64px;display:flex;flex-direction:column}
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--azul)}
+.eyebrow i{display:block;width:12px;height:12px;border-radius:50%;background:var(--rojo)}
+.dark .eyebrow{color:var(--naranja)}
+h1{margin-top:14px;font-family:var(--f-titulo);font-size:84px;line-height:.92;font-weight:800;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance}
+h2{margin:12px 0 24px;font-family:var(--f-titulo);font-size:48px;line-height:1;font-weight:700;letter-spacing:-.005em;max-width:1000px;text-wrap:balance}
+h1 em,h2 em{font-style:normal;color:var(--azul)}
+.dark h1 em,.dark h2 em,.s-cover h1 em{color:var(--naranja)}
+.s-cover{background:var(--negro)}
+.s-cover .bg{position:absolute;inset:0;background-size:auto 112%;background-position:right 40%;background-repeat:no-repeat}
+.s-cover .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,16,30,1) 0%,rgba(6,16,30,.97) 34%,rgba(6,22,44,.8) 52%,rgba(6,22,44,.35) 72%,rgba(6,22,44,.2) 100%)}
+.cover{position:relative;height:100%;padding:0 64px;display:flex;flex-direction:column;justify-content:center;max-width:740px;color:var(--claro-osc)}
+.cover .eyebrow{color:var(--naranja)}
+.sub{margin-top:22px;font-size:21px;line-height:1.42;color:var(--suave-osc);max-width:620px}
+.alianza{margin-top:30px;display:flex;align-items:center;gap:16px;font-size:15px;color:var(--suave-osc);font-weight:600}
+.pill{background:var(--blanco);border-radius:8px;padding:9px 14px;display:inline-flex}.pill img{height:34px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;flex:1;align-items:start;min-height:0}
+.cols>*{min-width:0}
+.cols.c2{grid-template-columns:600px 1fr;gap:34px}
+.cols.c3{grid-template-columns:1.25fr 1fr;gap:34px}
+blockquote{font-size:23px;line-height:1.38;font-weight:600;border-left:5px solid var(--rojo);padding:6px 0 6px 18px;margin-bottom:22px}
+.lista{list-style:none;display:grid;gap:12px}.lista li{position:relative;padding-left:24px;font-size:18px;line-height:1.4}
+.lista li:before{content:"";position:absolute;left:0;top:8px;width:10px;height:10px;border-radius:50%;background:var(--rojo)}
+.dark .lista li:before{background:var(--naranja)}
+.lista.grande li{font-size:21px}
+.dark .lista li{color:var(--claro-osc)}
+.vid{position:relative;border-radius:8px;overflow:hidden;background:#000;box-shadow:0 18px 50px rgba(6,30,60,.28);aspect-ratio:16/9;max-width:100%}
+.vid video{width:100%;height:100%;display:block;object-fit:contain;background:#000}
+.vid.grande{width:900px;margin:0 auto}
+.imp{display:none}
+.pie{margin-top:10px;font-size:14px;color:var(--tinta-suave)}
+.flujo{display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr 34px 1fr;align-items:stretch;gap:8px;margin-top:6px}
+.caja{background:var(--blanco);border:1px solid var(--linea);border-radius:8px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.caja b{font-family:var(--f-titulo);font-size:22px;font-weight:700}.caja span{font-size:15px;line-height:1.45;color:var(--tinta-suave)}
+.caja.acento{background:var(--azul);border-color:var(--azul)}.caja.acento b,.caja.acento span{color:var(--blanco)}
+.flecha{display:grid;place-items:center;font-size:28px;color:var(--rojo);font-weight:800}
+.tres{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.tres div{background:var(--tenue);border-radius:8px;padding:16px;font-size:15px;line-height:1.45;color:var(--tinta-suave)}
+.tres b{display:block;font-family:var(--f-titulo);font-size:24px;font-weight:700;color:var(--tinta);margin-bottom:4px}
+.dark .tres div{background:var(--azul-noche-2);color:var(--suave-osc)}.dark .tres b{color:var(--blanco)}
+.caso h2{margin-bottom:16px}
+.ficha{display:flex;flex-direction:column;gap:12px}
+.ficha span{display:block;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rojo);margin-bottom:4px}
+.enc{font-size:19px;font-weight:600;line-height:1.35}
+.bloque ul{list-style:none;display:grid;gap:5px}.bloque li{font-size:15px;line-height:1.4;padding-left:16px;position:relative;color:var(--tinta-suave)}
+.bloque li:before{content:"›";position:absolute;left:0;color:var(--azul);font-weight:800}
+.res{background:var(--azul-claro);border-radius:8px;padding:12px 14px;font-size:15.5px;line-height:1.4}
+.res span{color:var(--azul)}
+.prod{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.prod div{background:var(--azul-noche);color:var(--suave-osc);border-radius:8px;padding:10px 12px;font-size:12.5px;line-height:1.3}
+.prod b{display:block;color:var(--blanco);font-family:var(--f-titulo);font-size:24px;font-weight:700}
+.prod .libre{background:var(--naranja);color:var(--negro)}.prod .libre b{color:var(--negro)}
+.tabla{width:100%;border-collapse:collapse;font-size:14px}
+.tabla th{text-align:left;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--azul);padding:6px 8px;border-bottom:2px solid var(--azul)}
+.tabla td{padding:5px 8px;border-bottom:1px solid var(--linea)}
+.tabla td:nth-child(n+2){font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:700}
+.claves{display:grid;gap:12px}
+.claves div{background:var(--blanco);border:1px solid var(--linea);border-radius:8px;padding:14px 16px;font-size:15px;line-height:1.45;color:var(--tinta-suave)}
+.claves b{display:block;color:var(--tinta);font-family:var(--f-titulo);font-size:22px;font-weight:700;margin-bottom:3px}
+.nota{font-size:12.5px;color:var(--tinta-suave)}
+.cita{font-family:var(--f-titulo);font-size:56px;font-weight:800;line-height:1;color:var(--azul);align-self:center;text-transform:uppercase}
+.foto{margin-top:14px;width:100%;max-height:250px;object-fit:cover;border-radius:8px}
+.enorme{font-size:66px;margin-top:36px;text-transform:uppercase;line-height:.95}
+.marcas{margin-top:auto;font-size:12.5px;color:var(--suave-osc)}
+#nav{position:fixed;bottom:11px;left:50%;transform:translateX(-50%);opacity:.85;transition:opacity .2s;display:flex;align-items:center;gap:12px;z-index:50;font:600 12px/1 var(--f-texto);color:#93A3B8;letter-spacing:.08em}
+#nav:hover{opacity:1}
+#nav button{all:unset;cursor:pointer;min-width:30px;height:30px;border-radius:15px;display:grid;place-items:center;background:#16212F;color:#DCE4EE;font-size:14px;padding:0 6px}
+#nav button:hover,#nav button:focus-visible{background:var(--azul);color:#fff}
+#nav button:focus-visible{outline:2px solid var(--naranja);outline-offset:2px}
+#counter{min-width:46px;text-align:center;font-variant-numeric:tabular-nums}
+#dots{display:flex;gap:6px;align-items:center}
+#dots i{display:block;width:8px;height:8px;border-radius:50%;background:#2B3A4D;cursor:pointer}
+#dots i.on{background:var(--naranja);transform:scale(1.25)}
+#hint{position:fixed;bottom:52px;left:50%;transform:translateX(-50%);z-index:50;background:rgba(6,20,40,.94);color:#E3EAF2;border:1px solid #20324A;padding:8px 16px;border-radius:999px;font:600 12.5px/1 var(--f-texto);transition:opacity .6s;pointer-events:none;white-space:nowrap}
+#hint b{color:var(--naranja)}#hint.off{opacity:0}
+@media (max-width:700px){#dots{display:none}#hint{font-size:11px}}
+@media (prefers-reduced-motion:reduce){.slide{transition:none}}
+@media print{@page{size:1280px 720px;margin:0}
+html,body{overflow:visible;height:auto;background:#fff}#viewport{position:static;display:block}#stage{position:static;transform:none!important;width:1280px;height:auto;box-shadow:none;overflow:visible}
+.slide{position:relative;transform:none!important;visibility:visible!important;width:1280px;height:720px;break-after:page;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#nav,#hint{display:none}.vid video{display:none}.imp{display:block;width:100%;height:100%;object-fit:contain;background:#000}}
+
+.s-atlas{background:#000}
+.s-atlas .mascota{position:absolute;right:-10px;top:24px;height:672px;width:auto;max-width:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%);mask-image:linear-gradient(90deg,transparent 0,#000 16%)}
+.s-atlas:after{content:"";position:absolute;inset:0;background:radial-gradient(70% 90% at 0% 50%,rgba(0,74,152,.35),transparent 70%);pointer-events:none}
+.s-atlas .cover{max-width:640px;z-index:2}
+.s-atlas h1{font-size:92px}
+.s-atlas .sub b{color:var(--blanco);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.kpis div{background:var(--blanco);border:1px solid var(--linea);border-radius:8px;padding:14px 18px 16px}
+.kpis b{display:block;font-family:var(--f-titulo);font-size:58px;line-height:1;font-weight:800;color:var(--azul);font-variant-numeric:tabular-nums}
+.kpis span{display:block;margin-top:4px;font-size:15px;line-height:1.3;color:var(--tinta-suave)}
+.graficos{display:grid;grid-template-columns:1fr 1.35fr;gap:34px;margin-top:22px;flex:1;min-height:0}
+.g h3,.semanas h3{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rojo);margin-bottom:10px}
+.meses{display:flex;align-items:flex-end;gap:16px;height:190px;border-bottom:2px solid var(--tinta);padding:0 6px}
+.mes,.sem{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative}
+.mes .barra,.sem .barra{width:100%;background:var(--azul);border-radius:3px 3px 0 0}
+.mes:nth-child(2) .barra{background:var(--naranja)}
+.mes .v,.sem .v{font-family:var(--f-titulo);font-weight:700;font-size:20px;margin-bottom:4px;font-variant-numeric:tabular-nums}
+.mes .m,.sem .m{position:absolute;bottom:-24px;font-size:13px;font-weight:600;color:var(--tinta-suave)}
+.g .nota{margin-top:30px}
+.deps{display:grid;gap:9px}
+.dep{display:grid;grid-template-columns:200px 1fr;gap:12px;align-items:center}
+.dn b{display:block;font-size:16px;line-height:1.1}.dn span{font-size:13px;color:var(--tinta-suave)}
+.dn small{display:block;font-size:11.5px;line-height:1.25;color:var(--azul);margin-top:1px}
+.db{display:flex;align-items:center;gap:10px}
+.db i{display:block;height:20px;background:var(--azul);border-radius:2px}
+.dep:first-child .db i{background:var(--rojo)}
+.db em{font-style:normal;font-family:var(--f-titulo);font-weight:700;font-size:20px;font-variant-numeric:tabular-nums}
+.deps.con-nombres{gap:6px}
+.tareas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.t{background:var(--blanco);border:1px solid var(--linea);border-radius:8px;padding:18px 20px;display:flex;flex-direction:column;gap:7px}
+.t .area,.ej .area{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--rojo)}
+.t b{font-family:var(--f-titulo);font-size:27px;line-height:1.05;font-weight:700}
+.t p{font-size:16px;line-height:1.4;color:var(--tinta-suave)}
+.t em{margin-top:auto;padding-top:6px;font-style:normal;font-weight:700;font-size:15px;color:var(--azul)}
+.asi{margin-top:22px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:18px;background:var(--azul-noche);color:var(--claro-osc);border-radius:8px;padding:14px 20px}
+.asi span{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--naranja)}
+.asi q{font-family:var(--f-titulo);font-size:26px;font-weight:700;color:var(--blanco);white-space:nowrap}
+.asi q:before{content:"«"}.asi q:after{content:"»"}
+.asi p{font-size:14px;line-height:1.4;color:var(--suave-osc)}
+.recientes{display:grid;grid-template-columns:250px 1fr;gap:26px;flex:1;min-height:0}
+.lado{display:flex;flex-direction:column;gap:12px}
+.cifra{background:var(--azul);color:var(--blanco);border-radius:8px;padding:12px 16px}
+.cifra:nth-child(2){background:var(--naranja);color:var(--negro)}
+.cifra b{display:block;font-family:var(--f-titulo);font-size:48px;line-height:1;font-weight:800}
+.cifra span{font-size:14px;font-weight:600}
+.sems{display:flex;align-items:flex-end;gap:8px;height:120px;border-bottom:2px solid var(--tinta)}
+.sem .v{font-size:17px}.sem .m{font-size:11px;white-space:nowrap}
+.semanas .nota{margin-top:26px}
+.ejemplos{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:12px}
+.ej{background:var(--blanco);border:1px solid var(--linea);border-radius:8px;padding:11px 15px;display:flex;flex-direction:column;gap:4px}
+.ej q{font-size:16px;line-height:1.3;font-weight:600}
+.ej q:before{content:"«"}.ej q:after{content:"»"}
+.ej p{font-size:14px;line-height:1.35;color:var(--tinta-suave);padding-left:16px;position:relative}
+.ej p:before{content:"→";position:absolute;left:0;color:var(--azul);font-weight:800}
+.ej small{margin-top:auto;font-size:12px;font-weight:600;color:var(--azul)}
+.ejemplos.con-nombres .ej q{font-size:15px}.ejemplos.con-nombres .ej p{font-size:13.5px}
+.circuito{display:grid;grid-template-columns:1fr 30px 1fr 30px 1.2fr 30px 1fr;gap:6px;align-items:stretch}
+.paso{background:var(--azul-noche-2);border-radius:8px;padding:18px 18px;display:flex;flex-direction:column;gap:6px}
+.paso b{font-family:var(--f-titulo);font-size:27px;font-weight:700;color:var(--blanco)}
+.paso span{font-size:16px;line-height:1.4;color:var(--suave-osc)}
+.paso.acento{background:var(--azul)}.paso.acento span{color:var(--claro-osc)}
+.fl{display:grid;place-items:center;font-size:26px;font-weight:800;color:var(--naranja)}
+.equipo{margin-top:22px;display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:12px;border:1px solid #23446E;border-radius:8px;padding:18px 20px}
+.eq-tit b{display:block;font-family:var(--f-titulo);font-size:28px;line-height:1;font-weight:800;color:var(--naranja)}
+.eq-tit span,.grupo span{display:block;margin-top:6px;font-size:15px;line-height:1.4;color:var(--suave-osc)}
+.grupo b{display:block;font-size:19px;color:var(--blanco);margin-top:8px}
+.fichas{display:flex;gap:6px}
+.fichas i{display:block;width:24px;height:24px;border-radius:4px}
+.fichas .sol{background:var(--azul);box-shadow:inset 0 0 0 2px #3C82D0}
+.fichas .luna{background:var(--naranja)}
+.fichas .astra{background:transparent;box-shadow:inset 0 0 0 2px var(--claro-osc)}
+.garantias{margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.garantias div{font-size:15px;line-height:1.35;color:var(--suave-osc)}
+.garantias b{display:block;font-size:19px;color:var(--blanco)}
+
+.resto{margin-top:10px;font-size:13.5px;line-height:1.4;color:var(--tinta-suave)}
+.graficos.g2{grid-template-columns:1.25fr 1fr;align-items:center;margin-top:10px}
+.g h3 .ley{font-weight:600;letter-spacing:.04em;text-transform:none;font-size:12px;padding-left:16px;position:relative;color:var(--tinta-suave);margin-left:8px}
+.g h3 .ley:before{content:"";position:absolute;left:0;top:2px;width:11px;height:11px;border-radius:2px}
+.g h3 .ley.ot:before{background:var(--azul)}.g h3 .ley.ru:before{background:#B9C4D2}
+.meses2{display:flex;align-items:flex-end;gap:18px;height:200px;border-bottom:2px solid var(--tinta);padding:0 6px}
+.mcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative}
+.mcol .pct{font-family:var(--f-titulo);font-weight:800;font-size:22px;color:var(--azul);margin-bottom:4px}
+.pila{width:100%;display:flex;flex-direction:column}
+.pila i{display:block;width:100%}.pila .ru{background:#B9C4D2}.pila .ot{background:var(--azul);border-radius:3px 3px 0 0}
+.mcol .m{position:absolute;bottom:-26px;font-size:14px;font-weight:700}
+.mcol .pp{position:absolute;bottom:-44px;font-size:12px;color:var(--tinta-suave)}
+.g2 .nota{margin-top:52px}
+.lectura{background:var(--azul-claro);border-radius:8px;padding:20px 22px;font-size:18px;line-height:1.45;color:var(--tinta)}
+.lectura b{color:var(--azul)}
+.dia{display:grid;grid-template-columns:0.85fr 1.3fr;gap:24px}
+.rutina{display:grid;gap:12px}
+.rutina div{background:var(--azul-noche);color:var(--suave-osc);border-radius:8px;padding:14px 18px;font-size:15.5px;line-height:1.4}
+.rutina b{display:block;font-family:var(--f-titulo);font-size:25px;font-weight:700;color:var(--blanco)}
+.ejemplos.ej4{grid-template-columns:1fr 1fr;grid-auto-rows:auto;align-content:start}
+.ejemplos.ej4 .ej{padding:16px 18px;gap:8px}.ejemplos.ej4 .ej q{font-size:18px}.ejemplos.ej4 .ej p{font-size:15px}
+.proceso{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.proceso div{background:var(--blanco);border:1px solid var(--linea);border-radius:8px;padding:16px 16px 18px;font-size:15px;line-height:1.42;color:var(--tinta-suave)}
+.proceso b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--azul);color:var(--blanco);font-family:var(--f-titulo);font-size:18px;margin-bottom:8px}
+.proceso strong{display:block;font-family:var(--f-titulo);font-size:23px;font-weight:700;color:var(--tinta);margin-bottom:4px}
+.proceso div:nth-child(4) b{background:var(--rojo)}.proceso div:nth-child(5) b{background:var(--naranja);color:var(--negro)}
+.sirve{margin-top:20px;background:var(--azul-noche);color:var(--claro-osc);border-radius:8px;padding:18px 22px;font-size:18px;line-height:1.45}
+.sirve b{color:var(--naranja)}
+.comprobado{background:var(--azul);color:var(--blanco);border-radius:8px;padding:16px 20px;font-size:16px;line-height:1.45}
+.comprobado span{display:block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--naranja);margin-bottom:4px}
+.flujo-d{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.flujo-d div{background:var(--blanco);border:1px solid var(--linea);border-radius:8px;padding:12px 14px;font-size:15px;line-height:1.35;display:flex;gap:10px;align-items:flex-start}
+.flujo-d b{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--rojo);color:var(--blanco);font-family:var(--f-titulo);font-size:16px}
+.ideas-d .nota{margin-top:2px}
+.cols.c6{grid-template-columns:1.45fr 1fr;gap:20px}
+.cuatro-g{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cuatro-g div{background:var(--azul-noche-2);border-radius:8px;padding:16px 18px;font-size:15px;line-height:1.42;color:var(--suave-osc)}
+.cuatro-g b{display:block;font-family:var(--f-titulo);font-size:24px;font-weight:700;color:var(--blanco);margin-bottom:6px}
+.cuatro-g .coste{background:var(--naranja);color:var(--negro)}.cuatro-g .coste b{color:var(--negro)}
+.urge-g{background:var(--rojo);color:#FCE8EB;border-radius:8px;padding:20px 22px}
+.urge-g span{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--naranja)}
+.urge-g b{display:block;font-family:var(--f-titulo);font-size:27px;font-weight:700;color:var(--blanco);line-height:1.05;margin-top:6px}
+.cols.uso{grid-template-columns:1fr 1fr;gap:28px;flex:none}
+.uso .g{background:var(--blanco);border:1px solid var(--linea);border-radius:8px;padding:16px 20px}
+.uso .dep{grid-template-columns:230px 1fr}
+.db i.nar{background:var(--naranja)}
+.uso .nota{margin-top:8px}
+.urge-g p{font-size:15.5px;line-height:1.42;margin:6px 0 14px}
+</style></head><body>
+<div id="viewport"><div id="stage">
+<section class="slide s-cover s-atlas"><img class="mascota" src="media/atlas.jpg" alt="ATLAS, la mascota del agente de IA de Reynasa">
+<div class="cover"><div class="eyebrow"><i></i>Reynasa · informe para gerencia · 26/10/2026</div>
+<h1>ATLAS,<br><em>el agente</em><br>de la empresa</h1>
+<p class="sub">Cualquier persona de Reynasa le escribe a su buzón con un encargo y sus archivos, y ATLAS le devuelve el resultado listo. Desde la última actualización es el único agente: Rex se ha desactivado para no tener dos agentes en el mismo equipo, y ATLAS lleva toda la carga.</p>
+<div class="alianza"><span class="pill"><img src="media/logo-reynasa.png" alt="Reynasa"></span><span>Datos del panel de control de ATLAS a 26/10/2026</span></div></div></section>
+<section class="slide"><div class="pad"><div class="eyebrow"><i></i>Lo que ha hecho · del 18 de junio al 26 de octubre</div>
+<h2>De las pruebas <em>a toda la empresa</em></h2>
+<div class="kpis"><div><b>742</b><span>encargos de la plantilla</span></div><div><b>42</b><span>personas se lo han pedido</span></div>
+<div><b>93 %</b><span>resueltos y entregados (98 % en octubre)</span></div><div><b>624</b><span>procedimientos aprendidos que reutiliza</span></div></div>
+<p class="resto">El 7 % restante no es trabajo mal hecho: son correos que no eran encargos (respuestas automáticas, boletines, agradecimientos), encargos que pasó a una persona o bloqueó por seguridad, y unos pocos que se quedaron sin respuesta por cortes de conexión del equipo.</p>
+<div class="graficos g2"><div class="g"><h3>Encargos por mes · <span class="ley ot">resto de la empresa</span> <span class="ley ru">Rubén, poniéndolo a punto</span></h3><div class="meses2"><div class="mcol"><span class="pct">10 %</span><div class="pila"><i class="ot" style="height:4px"></i><i class="ru" style="height:37px"></i></div><span class="m">Jun*</span><span class="pp">5 pers.</span></div><div class="mcol"><span class="pct">8 %</span><div class="pila"><i class="ot" style="height:12px"></i><i class="ru" style="height:138px"></i></div><span class="m">Jul</span><span class="pp">21 pers.</span></div><div class="mcol"><span class="pct">27 %</span><div class="pila"><i class="ot" style="height:22px"></i><i class="ru" style="height:57px"></i></div><span class="m">Ago</span><span class="pp">15 pers.</span></div><div class="mcol"><span class="pct">54 %</span><div class="pila"><i class="ot" style="height:31px"></i><i class="ru" style="height:27px"></i></div><span class="m">Sep</span><span class="pp">14 pers.</span></div><div class="mcol"><span class="pct">57 %</span><div class="pila"><i class="ot" style="height:25px"></i><i class="ru" style="height:19px"></i></div><span class="m">Oct*</span><span class="pp">25 pers.</span></div></div>
+<p class="nota">El porcentaje es la parte de los encargos que hacen otras personas. Además de los de la plantilla, Rubén le hizo unos 2.200 de pruebas y puesta a punto. * Junio desde el día 18 y octubre hasta el 26.</p></div>
+<div class="g lectura"><b>El volumen de julio era sobre todo de Rubén</b>, que lo estaba poniendo a punto. Ha ido dejando de usarlo para que lo use la empresa: <b>en octubre, el 57 % de los encargos son de otras personas</b>, 25 distintas, frente al 8 % de julio.</div></div></div></section>
+<section class="slide"><div class="pad"><div class="eyebrow"><i></i>El uso de ATLAS · encargos de la plantilla, del 18 de junio al 26 de octubre</div>
+<h2>Quién lo usa <em>y para qué</em></h2>
+<div class="cols uso"><div class="g"><h3>Por área</h3><div class="deps"><div class="dep"><div class="dn"><b>Compras</b><span>11 personas</span></div><div class="db"><i style="width:100.0%"></i><em>536</em></div></div><div class="dep"><div class="dn"><b>Comercial</b><span>16 personas</span></div><div class="db"><i style="width:17.9%"></i><em>96</em></div></div><div class="dep"><div class="dn"><b>Dirección</b><span>4 personas</span></div><div class="db"><i style="width:9.1%"></i><em>49</em></div></div><div class="dep"><div class="dn"><b>Otras áreas</b><span>10 personas</span></div><div class="db"><i style="width:8.0%"></i><em>43</em></div></div><div class="dep"><div class="dn"><b>Colaboradores externos</b><span>1 persona</span></div><div class="db"><i style="width:3.4%"></i><em>18</em></div></div></div></div>
+<div class="g"><h3>Lo que más se le pide</h3><div class="deps"><div class="dep"><div class="dn"><b>Cuadrar facturas y albaranes con Sage</b></div><div class="db"><i class="nar" style="width:100.0%"></i><em>503</em></div></div><div class="dep"><div class="dn"><b>Informes y presentaciones</b></div><div class="db"><i class="nar" style="width:17.9%"></i><em>90</em></div></div><div class="dep"><div class="dn"><b>PDF a Excel y SIGAUS</b></div><div class="db"><i class="nar" style="width:13.3%"></i><em>67</em></div></div><div class="dep"><div class="dn"><b>Análisis de ventas por cliente</b></div><div class="db"><i class="nar" style="width:12.7%"></i><em>64</em></div></div><div class="dep"><div class="dn"><b>Catálogo, fichas y traducciones</b></div><div class="db"><i class="nar" style="width:12.3%"></i><em>62</em></div></div></div><p class="nota">Un encargo puede contar en más de un tipo (por ejemplo, un informe de ventas).</p></div></div>
+<div class="sirve"><b>Compras es el área que más lo usa: 72 de cada 100 encargos.</b> En Comercial ya lo usan 16 personas. Falta llevarlo al resto de áreas: por eso urge la formación.</div></div></section>
+<section class="slide"><div class="pad"><div class="eyebrow"><i></i>Lo que hace cada día</div>
+<h2>Trabaja todo el día, <em>de lunes a domingo</em></h2>
+<div class="dia"><div class="rutina"><div><b>Cada 5 minutos</b>revisa su buzón y recoge los encargos nuevos.</div><div><b>Responde por correo</b>a cualquier persona de la empresa, con el archivo listo: Excel, PDF, Word o presentación.</div>
+<div><b>~17 encargos</b>por día laborable en las últimas cuatro semanas.</div><div><b>Cada noche</b>deja un informe de lo que ha hecho, y Rubén recibe copia de cada respuesta.</div></div>
+<div class="ejemplos ej4"><div class="ej"><span class="area">Compras · 503 encargos de contraste</span><q>Necesito que contrastes una factura con las líneas metidas en nuestro sistema.</q><p>Un Excel con cada diferencia de referencia, cantidad o precio.</p></div>
+<div class="ej"><span class="area">Comercial · 64 encargos de ventas</span><q>Dame un resumen de los clientes que están facturando menos que el año anterior, expresado en porcentaje.</q><p>El listado de clientes que bajan, con el porcentaje y un resumen.</p></div>
+<div class="ej"><span class="area">Comercial</span><q>Dame una presentación con las subidas y bajadas de unidades e importes de venta de cada familia.</q><p>La presentación por familias, lista para enviar.</p></div>
+<div class="ej"><span class="area">Dirección · 90 encargos de informes</span><q>Sácame un resumen de la presentación al consejo de dirección.</q><p>Un resumen ejecutivo en PDF.</p></div></div></div></div></div></section>
+<section class="slide"><div class="pad"><div class="eyebrow"><i></i>También organiza y planifica · antes lo hacía Rex</div>
+<h2>El caso de <em>Compras Urgentes</em></h2>
+<div class="proceso"><div><b>1</b><strong>Recibe los Excel</strong>por correo y guarda los originales en una carpeta privada.</div>
+<div><b>2</b><strong>Revisa la situación</strong>Busca el último cuadrante definitivo, los cambios de equipo, las disponibilidades y las ausencias.</div>
+<div><b>3</b><strong>Propone el calendario</strong>Respeta los puestos fijos, las franjas y las rotaciones, y tiene en cuenta lo acumulado de cada persona.</div>
+<div><b>4</b><strong>Señala los huecos</strong>Marca dónde falta cobertura sin inventarse sustituciones.</div>
+<div><b>5</b><strong>Lo valida una persona</strong>Devuelve un Excel para revisar. Solo lo confirmado pasa al histórico.</div></div>
+<div class="sirve"><b>Sirve para cualquier reparto de personas:</b> turnos, vacaciones, guardias o calendarios de un departamento. La rutina semanal se activa cuando el primer ejemplo está validado.</div></div></section>
+<section class="slide"><div class="pad"><div class="eyebrow"><i></i>Lo siguiente · rutinas automáticas con Drive</div>
+<h2>Deja los datos en una carpeta, <em>recibe el informe por correo</em></h2>
+<div class="cols"><div><div class="comprobado"><span>Comprobado el 26/10</span>ATLAS tiene acceso a las carpetas de Drive y permiso de descarga. Puede bajarse por lotes conjuntos grandes, de unos 3 GB de Excel, analizarlos y convertir el resultado en una web, un panel o un vídeo.</div>
+<div class="flujo-d"><div><b>1</b>Una persona deja la información en una carpeta de Drive</div><div><b>2</b>ATLAS entra a su hora y la descarga</div><div><b>3</b>La analiza con el procedimiento de esa área</div><div><b>4</b>Envía el informe por correo a gerencia o a quien lo necesite</div></div></div>
+<div class="claves ideas-d"><div><b>Compras</b>La tarifa nueva de un proveedor frente a la anterior, en cuanto se deja en la carpeta.</div>
+<div><b>Comercial</b>Las ventas de la semana por cliente y familia, cada lunes.</div><div><b>Gerencia</b>Un resumen semanal de lo que cada área deja en su carpeta.</div>
+<p class="nota">Son ideas para probar: vale para toda la empresa, y el siguiente paso es montarlo con un caso real.</p></div></div></div></section>
+<section class="slide dark"><div class="pad"><div class="eyebrow"><i></i>Cómo funciona, coste y próximos pasos</div>
+<h2>Un solo agente, <em>con cuenta de empresa</em></h2>
+<div class="cols c6"><div class="cuatro-g"><div><b>Datos protegidos</b>Trabaja con ChatGPT Business, la cuenta de empresa de Reynasa: los datos no se usan para entrenar modelos y están protegidos conforme al RGPD.</div>
+<div><b>Control</b>Atiende a la empresa y a colaboradores aprobados. Lo que no debe hacer lo pasa a una persona, y cada respuesta tiene copia de auditoría.</div>
+<div><b>Cómo funciona</b>Un coordinador reparte cada correo entre hasta 12 puestos que se activan según la carga. Funciona en un equipo de Reynasa.</div>
+<div class="coste"><b>100 € al mes</b>Es lo que cuesta su cuenta de ChatGPT Business, con 5 veces más uso. Tiene otra de 100 € de respaldo, porque la primera siempre se agota.</div></div>
+<div class="urge-g"><span>Urge</span><b>Formar a buena parte de la plantilla</b><p>Para que sepan que esto existe y le saquen el máximo partido. Hoy lo usan 25 personas al mes, casi todas de Compras y Comercial.</p>
+<b>Y después</b><p>Elegir un área piloto para la primera rutina con Drive. Y cuando llegue el sobremesa nuevo, Rex vuelve en él para otro tipo de tareas, sin compartir equipo con ATLAS.</p></div></div></div></section>
+</div></div>
+<div id="nav"><button id="prev" title="Anterior (←)">‹</button><div id="dots"></div><span id="counter"></span><button id="next" title="Siguiente (→)">›</button><button id="fs" title="Pantalla completa (F)">⤢</button><button id="pdf" title="Descargar en PDF">PDF</button></div>
+<div id="hint">Pasa con <b>→</b>, desliza o pulsa a la derecha · <b>F</b> pantalla completa</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];const dots=document.getElementById('dots');const counter=document.getElementById('counter');const hint=document.getElementById('hint');
+let i=Math.max(0,Math.min(slides.length-1,(parseInt(location.hash.slice(1))||1)-1));
+slides.forEach((s,k)=>{const d=document.createElement('i');d.title='Diapositiva '+(k+1);d.onclick=()=>{hideHint();show(k)};dots.appendChild(d)});
+let hintTimer=setTimeout(hideHint,7000);function hideHint(){clearTimeout(hintTimer);hint.classList.add('off')}
+function show(n,first){n=Math.max(0,Math.min(slides.length-1,n));const old=i;i=n;
+slides.forEach((s,k)=>{s.classList.toggle('active',k===i);s.classList.toggle('prev',k<i);
+if(!first&&(k===old||k===i)){s.classList.add('anim');setTimeout(()=>s.classList.remove('anim'),550)}
+if(k!==i)s.querySelectorAll('video').forEach(v=>v.pause())});
+[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));counter.textContent=(i+1)+' / '+slides.length;
+history.replaceState(null,'','#'+(i+1))}
+document.getElementById('prev').onclick=()=>{hideHint();show(i-1)};document.getElementById('next').onclick=()=>{hideHint();show(i+1)};
+document.getElementById('viewport').onclick=e=>{if(e.target.closest('#nav')||e.target.closest('.noclick'))return;hideHint();show(e.clientX<innerWidth/2?i-1:i+1)};
+document.getElementById('fs').onclick=()=>{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()};
+document.getElementById('pdf').onclick=()=>window.print();
+addEventListener('keydown',e=>{hideHint();if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(i+1)}
+if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(i-1)}if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1);
+if(e.key.toLowerCase()==='f')document.getElementById('fs').click()});
+let x0=null;addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
+addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50){hideHint();show(dx<0?i+1:i-1)}x0=null});
+addEventListener('hashchange',()=>{const n=(parseInt(location.hash.slice(1))||1)-1;if(n!==i)show(n)});
+const stage=document.getElementById('stage');function fit(){const s=Math.min(innerWidth/1280,(innerHeight-46)/720);stage.style.transform='translate(-50%,-50%) scale('+s+')'}
+addEventListener('resize',fit);fit();show(i,true);
+</script></body></html>
