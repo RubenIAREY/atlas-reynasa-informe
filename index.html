@@ -231,6 +231,35 @@ html,body{overflow:visible;height:auto;background:#fff}#viewport{position:static
 .buzon-notas div{background:var(--blanco);border:1px solid var(--linea);border-left:4px solid var(--azul);border-radius:8px;padding:12px 16px;font-size:15px;line-height:1.4;color:var(--tinta-suave)}
 .buzon-notas div:nth-child(2){border-left-color:var(--rojo)}.buzon-notas div:nth-child(3){border-left-color:var(--naranja)}
 .buzon-notas b{display:block;font-family:var(--f-titulo);font-size:21px;font-weight:700;color:var(--tinta);margin-bottom:2px}
+.ag-flujo{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
+.ag-flujo div{position:relative;background:var(--blanco);border:1px solid var(--linea);border-radius:8px;padding:14px 16px 16px;font-size:14.5px;line-height:1.4;color:var(--tinta-suave)}
+.ag-flujo div:not(:last-child):after{content:"→";position:absolute;right:-19px;top:40%;font-family:var(--f-titulo);font-size:22px;font-weight:800;color:var(--rojo)}
+.ag-flujo b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--azul);color:var(--blanco);font-family:var(--f-titulo);font-size:17px;margin-bottom:6px}
+.ag-flujo strong{display:block;font-family:var(--f-titulo);font-size:21px;font-weight:700;line-height:1.05;color:var(--tinta);margin-bottom:5px}
+.ag-flujo div:nth-child(3) b{background:var(--naranja);color:var(--negro)}.ag-flujo div:nth-child(5) b{background:var(--rojo)}
+.ag-puestos{margin-top:18px;background:var(--azul-noche);color:var(--claro-osc);border-radius:8px;padding:16px 20px;display:grid;grid-template-columns:auto auto 1fr;gap:10px 24px;align-items:center}
+.ag-coord{display:flex;flex-direction:column;align-items:center;gap:4px}
+.ag-coord img{width:92px;height:92px}
+.ag-coord span{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#E3B04B}
+.ag-cuadros{display:grid;grid-template-columns:repeat(6,44px);gap:6px}
+.ag-cuadros img{width:44px;height:44px}
+.ag-ley{display:grid;gap:7px;font-size:15px;line-height:1.3;color:var(--suave-osc)}
+.ag-ley span{display:flex;align-items:center;gap:10px}.ag-ley img{flex:none;width:24px;height:24px}
+.ag-ley b{color:var(--blanco)}
+.ag-puestos p{grid-column:1/-1;font-size:16px;line-height:1.4;border-top:1px solid #23446E;padding-top:10px}
+.ag-puestos p b{color:var(--naranja)}
+.ag-dos{display:grid;grid-template-columns:1fr 1.05fr;gap:22px;align-items:start}
+.ag-glos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ag-glos div{background:var(--blanco);border:1px solid var(--linea);border-top:4px solid var(--azul);border-radius:8px;padding:12px 16px;font-size:14.5px;line-height:1.4;color:var(--tinta-suave)}
+.ag-glos div:nth-child(2){border-top-color:#2F7BD6}.ag-glos div:nth-child(3){border-top-color:var(--naranja)}.ag-glos div:nth-child(4){border-top-color:var(--rojo)}
+.ag-glos b{display:block;font-family:var(--f-titulo);font-size:21px;font-weight:700;color:var(--tinta);margin-bottom:3px}
+.ag-glos img{float:right;width:46px;height:46px;margin:-2px -4px 4px 8px}
+.ag-reglas{list-style:none;display:grid;gap:9px;margin:0;padding:0}
+.ag-reglas li{position:relative;padding-left:22px;font-size:15.5px;line-height:1.38;color:var(--tinta-suave)}
+.ag-reglas li:before{content:"";position:absolute;left:0;top:7px;width:10px;height:10px;border-radius:50%;background:var(--rojo)}
+.ag-reglas b{color:var(--tinta)}
+.ag-rrhh{margin-top:14px;background:var(--rojo);color:#FCE8EB;border-radius:8px;padding:14px 18px;font-size:15px;line-height:1.42}
+.ag-rrhh span{display:block;font-family:var(--f-titulo);font-size:22px;font-weight:700;color:var(--blanco);margin-bottom:3px}
 </style></head><body>
 <div id="viewport"><div id="stage">
 <section class="slide s-cover s-atlas"><img class="mascota" src="media/atlas.jpg" alt="ATLAS, la mascota del agente de IA de Reynasa">
